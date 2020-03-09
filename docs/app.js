@@ -15,7 +15,6 @@ app.use(express.static('public'));
 
 app.get('/', function(req, res) {
     res.send('Helloooooo wooooooorld');
-    console.log('hoi')
 
     const timestamp = Date.now()
     const publicKey = process.env.PUBLIC_KEY
