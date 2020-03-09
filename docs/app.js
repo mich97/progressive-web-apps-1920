@@ -1,7 +1,10 @@
 require('dotenv').config()
+
 const express = require('express')
 const fetch = require('node-fetch')
 const md5 = require('md5')
+
+
 
 const config = {
     port: 3000
