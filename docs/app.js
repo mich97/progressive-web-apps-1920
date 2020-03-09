@@ -4,21 +4,23 @@ const express = require('express')
 const fetch = require('node-fetch')
 const md5 = require('md5')
 
-
-
 const config = {
     port: 3000
 }
 
 const app = express();
+app.use(express.static('public'));
 app.set('view engine', 'ejs');
 app.set('views', 'views');
 
-app.use(express.static('public'));
-
 app.get('/', function(req, res) {
-    res.send('Helloooooo wooooooorld');
+    res.render('home', {
+        title: 'Marvel',
+        comics: 'Comics'
+    })
+})
 
+app.get('/comics', function(req, res) {
     const timestamp = Date.now()
     const publicKey = process.env.PUBLIC_KEY
     const privateKey = process.env.PRIVATE_KEY
@@ -26,9 +28,13 @@ app.get('/', function(req, res) {
     const url = `http://gateway.marvel.com/v1/public/comics?ts=${timestamp}&apikey=${publicKey}&hash=${hash}`
 
     fetch(url)
-        .then(res => res.json())
-        .then(json => console.log(json))
-        .catch(err => console.error(err))
+        .then(async response => {
+            const comicData = await response.json()
+            res.render('comic_overview', {
+                title: 'Comics',
+                comicData
+            })
+        })
 });
 
 app.listen(config.port, function() {
