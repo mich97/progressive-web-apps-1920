@@ -7,7 +7,7 @@
 <ul>
     <% comicData.data.results.forEach(comic => { %>
         <li>
-            <a href="/<%= comic.id %>"><%= comic.title %></a>
+            <a href="/comics/<%= comic.id %>"><%= comic.title %></a>
         </li>
     <% }) %>
 </ul>
