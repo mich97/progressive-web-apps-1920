@@ -1,0 +1,15 @@
+<html>
+
+<body>
+
+<h1>Characters</h1>
+
+<ul>
+    <% data.data.results.forEach(character => { %>
+        <li>
+            <a href="/characters/<%= character.id %>"><%= character.name %></a>
+        </li>
+    <% }) %>
+</ul>
+</body>
+</html>

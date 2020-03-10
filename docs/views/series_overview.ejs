@@ -1,0 +1,15 @@
+<html>
+
+<body>
+
+<h1>Series</h1>
+
+<ul>
+    <% data.data.results.forEach(serie => { %>
+        <li>
+            <a href="/series/<%= serie.id %>"><%= serie.title %></a>
+        </li>
+    <% }) %>
+</ul>
+</body>
+</html>

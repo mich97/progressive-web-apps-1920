@@ -13,20 +13,62 @@ const config = {
     port: 3000
 }
 
-const app = express();
-app.use(express.static('public'));
-app.set('view engine', 'ejs');
-app.set('views', 'views');
+const app = express()
+app
+    .set('view engine', 'ejs')
+    .set('views', 'views')
+    .use(express.static('public'))
+    .use('/', routes())
 
-app.get('/', function(req, res) {
+
+function routes() {
+    const router = express.Router()
+    router
+        .get('/', renderHome)
+        .get('/comics', getData)
+        .get('/characters', getData)
+        .get('/series', getData)
+    return router
+}
+
+function renderHome(req, res) {
     res.render('home', {
         title: 'Marvel',
-        comics: 'Comics'
+        comics: 'Comics',
+        characters: 'Characters',
+        series: 'Series'
+    })
+}
+
+
+function getData(req, res) {
+    const path = req.path.slice(1)
+    const url = `http://gateway.marvel.com/v1/public/${path}?ts=${timestamp}&apikey=${publicKey}&hash=${hash}`
+
+    fetch(url)
+        .then(async response => {
+            const data = await response.json()
+            res.render(`${path}_overview`, {
+                data
+            })
+        })
+}
+
+
+
+/*app.get('/', function (req, res) {
+    res.render('home', {
+        title: 'Marvel',
+        comics: 'Comics',
+        characters: 'Characters',
+        series: 'Series'
     })
 })
 
-app.get('/comics', function(req, res) {
+app.get('/comics', function (req, res) {
     const url = `http://gateway.marvel.com/v1/public/comics?ts=${timestamp}&apikey=${publicKey}&hash=${hash}`
+
+    console.log(req.path.slice(1))
 
     fetch(url)
         .then(async response => {
@@ -36,9 +78,9 @@ app.get('/comics', function(req, res) {
                 comicData
             })
         })
-});
+})
 
-app.get('/comics/:id', function(req, res) {
+app.get('/comics/:id', function (req, res) {
     const url = `http://gateway.marvel.com/v1/public/comics/${req.params.id}?ts=${timestamp}&apikey=${publicKey}&hash=${hash}`
 
     fetch(url)
@@ -50,8 +92,8 @@ app.get('/comics/:id', function(req, res) {
                 description: comic.description
             })
         })
-});
+})*/
 
-app.listen(config.port, function() {
-    console.log(`Application started on port: ${config.port}`);
-});
+app.listen(config.port, function () {
+    console.log(`Application started on port: ${config.port}`)
+})

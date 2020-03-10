@@ -2,10 +2,10 @@
 
 <body>
 
-<h1><%= title %></h1>
+<h1>Comics</h1>
 
 <ul>
-    <% comicData.data.results.forEach(comic => { %>
+    <% data.data.results.forEach(comic => { %>
         <li>
             <a href="/comics/<%= comic.id %>"><%= comic.title %></a>
         </li>
