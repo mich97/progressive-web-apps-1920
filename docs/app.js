@@ -25,9 +25,12 @@ function routes() {
     const router = express.Router()
     router
         .get('/', renderHome)
-        .get('/comics', getData)
-        .get('/characters', getData)
-        .get('/series', getData)
+        .get('/comics', renderOverview)
+        .get('/characters', renderOverview)
+        .get('/series', renderOverview)
+        .get('/comics/:id', renderDetail)
+        .get('/characters/:id', renderDetail)
+        .get('/series/:id', renderDetail)
     return router
 }
 
@@ -41,58 +44,35 @@ function renderHome(req, res) {
 }
 
 
-function getData(req, res) {
-    const path = req.path.slice(1)
-    const url = `http://gateway.marvel.com/v1/public/${path}?ts=${timestamp}&apikey=${publicKey}&hash=${hash}`
+function renderOverview(req, res) {
+    const category = req.path.slice(1)
+    const url = `http://gateway.marvel.com/v1/public/${category}?ts=${timestamp}&apikey=${publicKey}&hash=${hash}`
 
     fetch(url)
         .then(async response => {
             const data = await response.json()
-            res.render(`${path}_overview`, {
+            res.render(`${category}_overview`, {
                 data
             })
         })
 }
 
+function renderDetail(req, res) {
+    const category = req.path.slice(1, 7) /* currently only slices for 'comics' */
+    const id = req.path.slice(8)
+    const url = `http://gateway.marvel.com/v1/public/${category}/${id}?ts=${timestamp}&apikey=${publicKey}&hash=${hash}`
+    console.log(req)
+    console.log(category, id)
 
-
-/*app.get('/', function (req, res) {
-    res.render('home', {
-        title: 'Marvel',
-        comics: 'Comics',
-        characters: 'Characters',
-        series: 'Series'
-    })
-})
-
-app.get('/comics', function (req, res) {
-    const url = `http://gateway.marvel.com/v1/public/comics?ts=${timestamp}&apikey=${publicKey}&hash=${hash}`
-
-    console.log(req.path.slice(1))
-
-    fetch(url)
+/*    fetch(url)
         .then(async response => {
-            const comicData = await response.json()
-            res.render('comic_overview', {
-                title: 'Comics',
-                comicData
+            const data = await response.json()
+            const detail = data.data.results[0]
+            res.render(`${category}_detail`, {
+                detail
             })
-        })
-})
-
-app.get('/comics/:id', function (req, res) {
-    const url = `http://gateway.marvel.com/v1/public/comics/${req.params.id}?ts=${timestamp}&apikey=${publicKey}&hash=${hash}`
-
-    fetch(url)
-        .then(async response => {
-            const comicData = await response.json()
-            const comic = comicData.data.results[0]
-            res.render('comic_detail', {
-                title: comic.title,
-                description: comic.description
-            })
-        })
-})*/
+        })*/
+}
 
 app.listen(config.port, function () {
     console.log(`Application started on port: ${config.port}`)
