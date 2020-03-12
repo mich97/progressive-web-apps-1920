@@ -25,12 +25,8 @@ function routes() {
     const router = express.Router()
     router
         .get('/', renderHome)
-        .get('/comics', renderOverview)
-        .get('/characters', renderOverview)
-        .get('/series', renderOverview)
-        .get('/comics/:id', renderDetail)
-        .get('/characters/:id', renderDetail)
-        .get('/series/:id', renderDetail)
+        .get('/:category', renderOverview)
+        .get('/:category/:id', renderDetail)
     return router
 }
 
@@ -45,7 +41,7 @@ function renderHome(req, res) {
 
 
 function renderOverview(req, res) {
-    const category = req.path.slice(1)
+    const category = req.params.category
     const url = `http://gateway.marvel.com/v1/public/${category}?ts=${timestamp}&apikey=${publicKey}&hash=${hash}`
 
     fetch(url)
@@ -58,20 +54,18 @@ function renderOverview(req, res) {
 }
 
 function renderDetail(req, res) {
-    const category = req.path.slice(1, 7) /* currently only slices for 'comics' */
-    const id = req.path.slice(8)
+    const category = req.params.category
+    const id = req.params.id
     const url = `http://gateway.marvel.com/v1/public/${category}/${id}?ts=${timestamp}&apikey=${publicKey}&hash=${hash}`
-    console.log(req)
-    console.log(category, id)
 
-/*    fetch(url)
+    fetch(url)
         .then(async response => {
             const data = await response.json()
             const detail = data.data.results[0]
             res.render(`${category}_detail`, {
                 detail
             })
-        })*/
+        })
 }
 
 app.listen(config.port, function () {
