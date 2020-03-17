@@ -1,15 +1,16 @@
-<html>
 <%- include('partials/head') %>
-<body>
 
 <h1>Series</h1>
 
-<ul>
-    <% data.data.results.forEach(serie => { %>
-        <li>
-            <a href="/m/series/<%= serie.id %>"><%= serie.title %></a>
-        </li>
-    <% }) %>
-</ul>
-</body>
-</html>
+<section class="main-container">
+    <section class="main-overview">
+        <% overview.forEach(serie => { %>
+            <a class="card" href="/m/series/<%= serie.id %>">
+                <img class="card-thumbnail" src="<%=  `${serie.thumbnail.path}.${serie.thumbnail.extension}` %>" alt="Serie Thumbnail">
+                <h5 class="card-title"><%= serie.title %></h5>
+            </a>
+        <% }) %>
+    </section>
+</section>
+
+<%- include('partials/footer') %>

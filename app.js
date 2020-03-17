@@ -27,6 +27,7 @@ function routes() {
         .get('/', renderHome)
         .get('/m/:category', renderOverview)
         .get('/m/:category/:id', renderDetail)
+        .get('/offline', renderOffline)
     return router
 }
 
@@ -41,8 +42,9 @@ function renderOverview(req, res) {
     fetch(url)
         .then(async response => {
             const data = await response.json()
+            const overview = data.data.results
             res.render(`${category}_overview`, {
-                data
+                overview
             })
         })
 }
@@ -60,6 +62,10 @@ function renderDetail(req, res) {
                 detail
             })
         })
+}
+
+function renderOffline(req, res) {
+    res.render('offline')
 }
 
 app.listen(config.port, function () {

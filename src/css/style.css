@@ -17,3 +17,30 @@ section[class="category-overview"] {
 section[class="category-overview"] a {
     text-decoration: none;
 }
+
+section[class="main-container"] {
+    max-width: 1160px;
+    margin: auto;
+}
+
+section[class="main-overview"] {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    grid-gap: 20px;
+}
+
+img[class="card-thumbnail"] {
+    width: 100%;
+    height: auto;
+    border-radius: 5px;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
+    transition: transform 0.4s;
+}
+
+a[class="card"] {
+    /*align-self: end;*/
+}
+
+a[class="card"]:hover img {
+    transform: translateY(-20px);
+}
