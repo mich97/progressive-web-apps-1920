@@ -17,7 +17,7 @@ const app = express()
 app
     .set('view engine', 'ejs')
     .set('views', 'views')
-    .use(express.static('public'))
+    .use(express.static('static'))
     .use('/', routes())
 
 
@@ -25,8 +25,8 @@ function routes() {
     const router = express.Router()
     router
         .get('/', renderHome)
-        .get('/:category', renderOverview)
-        .get('/:category/:id', renderDetail)
+        .get('/m/:category', renderOverview)
+        .get('/m/:category/:id', renderDetail)
     return router
 }
 
@@ -38,7 +38,6 @@ function renderHome(req, res) {
         series: 'Series'
     })
 }
-
 
 function renderOverview(req, res) {
     const category = req.params.category

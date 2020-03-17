@@ -1,5 +1,5 @@
 <html>
-
+<%- include('partials/head') %>
 <body>
 
 <h1>Comics</h1>
@@ -7,7 +7,7 @@
 <ul>
     <% data.data.results.forEach(comic => { %>
         <li>
-            <a href="/comics/<%= comic.id %>"><%= comic.title %></a>
+            <a href="/m/comics/<%= comic.id %>"><%= comic.title %></a>
         </li>
     <% }) %>
 </ul>

@@ -4,19 +4,32 @@
   "description": "",
   "main": "app.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "nodemon app.js"
+    "prestart": "npm run build",
+    "start": "nodemon app.js",
+    "prebuild": "rimraf ./static",
+    "build": "npm-run-all build:*",
+    "build:css": "node scripts/build-css.js",
+    "watch": "run-p watch:*",
+    "watch:css": "chokidar 'src/css/*.css' --command 'npm run build:css'",
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "dotenv": "^8.2.0",
     "ejs": "^3.0.1",
     "express": "^4.17.1",
     "md5": "^2.2.1",
     "node-fetch": "^2.6.0"
   },
   "devDependencies": {
-    "nodemon": "^2.0.2"
+    "chokidar-cli": "^2.1.0",
+    "dotenv": "^8.2.0",
+    "gulp": "^4.0.2",
+    "gulp-autoprefixer": "^7.0.1",
+    "gulp-clean-css": "^4.2.0",
+    "gulp-concat": "^2.6.1",
+    "nodemon": "^2.0.2",
+    "npm-run-all": "^4.1.5",
+    "rimraf": "^3.0.2"
   }
 }
