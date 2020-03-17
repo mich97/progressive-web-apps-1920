@@ -31,12 +31,7 @@ function routes() {
 }
 
 function renderHome(req, res) {
-    res.render('home', {
-        title: 'Marvel',
-        comics: 'Comics',
-        characters: 'Characters',
-        series: 'Series'
-    })
+    res.render('home')
 }
 
 function renderOverview(req, res) {

@@ -1,6 +1,19 @@
-@import "variables.css";
-@import "font.css";
-
 body {
     margin: 0;
+    background-color: var(--light);
+}
+
+section[class="home-container"] {
+    max-width: 1160px;
+    margin: auto;
+    text-align: center;
+}
+
+section[class="category-overview"] {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+}
+
+section[class="category-overview"] a {
+    text-decoration: none;
 }
