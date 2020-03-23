@@ -1,7 +1,9 @@
 const CORE_CACHE_VERSION = 'v1'
 const CORE_ASSETS = [
+    '/',
     '/offline',
     '/style.css',
+    '/marvel_logo.png'
 ]
 
 self.addEventListener('install', event => {
