@@ -10,7 +10,7 @@ const privateKey = process.env.PRIVATE_KEY
 const hash = md5(timestamp + privateKey + publicKey)
 
 const config = {
-    port: 3000
+    port: process.env.PORT || 3000
 }
 
 const app = express()
