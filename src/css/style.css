@@ -3,10 +3,24 @@ body {
     background-color: var(--light);
 }
 
-section[class="home-container"] {
-    max-width: 1160px;
-    margin: auto;
+header {
+    padding: 1em;
     text-align: center;
+    background-color: var(--dark);
+}
+
+header img {
+    width: 150px;
+    height: auto;
+}
+
+header nav {
+    padding: 1em;
+}
+
+header nav a {
+    text-decoration: none;
+    color: var(--light);
 }
 
 section[class="category-overview"] {
