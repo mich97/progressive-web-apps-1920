@@ -1,5 +1,7 @@
 require('dotenv').config()
 
+const port = process.env.PORT || 3000
+
 const express = require('express')
 const fetch = require('node-fetch')
 const md5 = require('md5')
@@ -9,17 +11,12 @@ const publicKey = process.env.PUBLIC_KEY
 const privateKey = process.env.PRIVATE_KEY
 const hash = md5(timestamp + privateKey + publicKey)
 
-const config = {
-    port: process.env.PORT || 3000
-}
-
 const app = express()
 app
     .set('view engine', 'ejs')
     .set('views', 'views')
     .use(express.static('static'))
     .use('/', routes())
-
 
 function routes() {
     const router = express.Router()
@@ -68,6 +65,6 @@ function renderOffline(req, res) {
     res.render('offline')
 }
 
-app.listen(config.port, function () {
-    console.log(`Application started on port: ${config.port}`)
+app.listen(port, function () {
+    console.log(`Application started on port: ${port}`)
 })

@@ -6,11 +6,15 @@
   "scripts": {
     "prestart": "npm run build",
     "start": "node app.js",
+    "predev": "npm run build",
     "dev": "nodemon app.js",
     "prebuild": "rimraf ./static",
     "build": "npm-run-all build:*",
     "build:css": "node scripts/build-css.js",
     "build:assets": "node scripts/build-static-assets.js",
+    "watch": "run-p watch:*",
+    "watch:css": "chokidar \"src/css/*.css\" --command \"npm run build:css\"",
+    "watch:assets": "chokidar \"src/**/*.*\" --command \"npm run build:assets\"",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",
