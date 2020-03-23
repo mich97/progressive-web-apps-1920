@@ -42,7 +42,7 @@ function renderOverview(req, res) {
     fetch(url)
         .then(async response => {
             const data = await response.json()
-            const overview = data.data.results
+            const overview = data.data.results.filter(item => item.thumbnail.path !== "http://i.annihil.us/u/prod/marvel/i/mg/b/40/image_not_available")
             res.render(`${category}_overview`, {
                 overview
             })
