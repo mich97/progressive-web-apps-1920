@@ -3,10 +3,10 @@
 <section class="main-container">
     <h2>Comics</h2>
     <section class="main-overview">
-        <% overview.forEach(comic => { %>
+        <% modifiedOverview.forEach(comic => { %>
             <a class="card" href="/m/comics/<%= comic.id %>">
-                <img class="card-thumbnail" src="<%=  `${comic.thumbnail.path}.${comic.thumbnail.extension}` %>" alt="Comic Thumbnail">
-                <h5 class="card-title"><%= comic.title %></h5>
+                <img class="card-thumbnail" src="<%=  `${comic.img}` %>" alt="Comic Thumbnail">
+                <h5 class="card-title"><%= comic.name %></h5>
             </a>
         <% }) %>
     </section>

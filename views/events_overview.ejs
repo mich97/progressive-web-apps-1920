@@ -3,10 +3,10 @@
 <section class="main-container">
     <h2>Events</h2>
     <section class="main-overview">
-        <% overview.forEach(event => { %>
+        <% modifiedOverview.forEach(event => { %>
             <a class="card" href="/m/events/<%= event.id %>">
-                <img class="card-thumbnail" src="<%=  `${event.thumbnail.path}.${event.thumbnail.extension}` %>" alt="Event Thumbnail">
-                <h5 class="card-title"><%= event.title %></h5>
+                <img class="card-thumbnail" src="<%= `${event.img}` %>" alt="Event Thumbnail">
+                <h5 class="card-title"><%= event.name %></h5>
             </a>
         <% }) %>
     </section>

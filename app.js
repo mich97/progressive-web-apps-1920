@@ -35,14 +35,7 @@ function renderHome(req, res) {
 
 function renderOverview(req, res) {
     const category = req.params.category
-    const pwa = req.params.pwa
-    let url
-
-    if(pwa == true) {
-        url = `${cors}http://gateway.marvel.com/v1/public/${category}?ts=${timestamp}&apikey=${publicKey}&hash=${hash}`
-    } else {
-        url = `http://gateway.marvel.com/v1/public/${category}?ts=${timestamp}&apikey=${publicKey}&hash=${hash}`
-    }
+    const url = `http://gateway.marvel.com/v1/public/${category}?ts=${timestamp}&apikey=${publicKey}&hash=${hash}`
 
     fetch(url)
         .then(async response => {
@@ -51,8 +44,19 @@ function renderOverview(req, res) {
                 item.thumbnail.path !== "http://i.annihil.us/u/prod/marvel/i/mg/b/40/image_not_available"
                 && item.description !== null)
 
+            const modifiedOverview = overview.map(item => {
+                let thumbnailimg = item.thumbnail.path;
+                thumbnailimg = thumbnailimg.replace(/^http:\/\//i, 'https://');
+
+                return {
+                    id: item.id,
+                    name: item.title || item.name,
+                    img: `${thumbnailimg}.${item.thumbnail.extension}`
+                }
+            })
+
             res.render(`${category}_overview`, {
-                overview
+                modifiedOverview
             })
         })
 }
