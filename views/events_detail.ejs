@@ -1,0 +1,8 @@
+<%- include('partials/head') %>
+<section class="detail-container">
+    <img src="<%= `${detail.thumbnail.path}.${detail.thumbnail.extension}` %>" alt="Serie Thumbnail">
+    <h1><%= detail.title %></h1>
+    <p><%= detail.description%></p>
+    <a href="/m/events">Go back</a>
+</section>
+<%- include('partials/footer') %>

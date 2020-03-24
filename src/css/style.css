@@ -5,31 +5,27 @@ body {
 
 header {
     padding: 1em;
-    text-align: center;
     background-color: var(--dark);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
 }
 
-header img {
-    width: 150px;
-    height: auto;
-}
-
-header nav {
-    padding: 1em;
+header a img {
+    max-height: 4em;
+    width: auto;
 }
 
 header nav a {
     text-decoration: none;
     color: var(--light);
+    padding: 1em;
+    font-size: 1.1em;
 }
 
-section[class="category-overview"] {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-}
-
-section[class="category-overview"] a {
-    text-decoration: none;
+header nav a:hover {
+    color: var(--marvel);
+    border-bottom: 2px solid var(--marvel);
 }
 
 section[class="main-container"] {
@@ -41,6 +37,12 @@ section[class="main-overview"] {
     display: grid;
     grid-template-columns: repeat(5, 1fr);
     grid-gap: 20px;
+    padding: 1em;
+}
+
+section[class="main-container"] a {
+    text-decoration: none;
+    color: var(--dark);
 }
 
 img[class="card-thumbnail"] {
@@ -51,10 +53,63 @@ img[class="card-thumbnail"] {
     transition: transform 0.4s;
 }
 
-a[class="card"] {
-    /*align-self: end;*/
-}
-
 a[class="card"]:hover img {
     transform: translateY(-20px);
+}
+
+a[class="card"]:hover h5 {
+    color: var(--marvel);
+}
+
+section[class="detail-container"] {
+    max-width: 20em;
+    margin: auto;
+    padding: 1em;
+}
+
+section[class="detail-container"] img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 5px;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
+}
+
+section[class="detail-container"] a {
+    text-decoration: none;
+    color: var(--dark);
+    font-weight: 900;
+    font-size: 1.3em;
+    padding: 1em 0;
+}
+
+section[class="detail-container"] a:hover {
+    color: var(--marvel);
+    border-bottom: 2px solid var(--marvel);
+}
+
+@media only screen and (max-width: 900px) {
+    section[class="main-overview"] {
+        grid-template-columns: repeat(3, 1fr);
+    }
+
+}
+
+@media only screen and (max-width: 600px) {
+    section[class="main-overview"] {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+}
+
+@media only screen and (max-width: 440px) {
+    section[class="main-overview"] {
+        grid-template-columns: repeat(1, 1fr);
+    }
+    header {
+        display: block;
+        text-align: center;
+    }
+    header nav {
+        margin-top: 1em;
+    }
 }

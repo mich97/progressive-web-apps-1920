@@ -1,0 +1,15 @@
+<%- include('partials/head') %>
+
+<section class="main-container">
+    <h1>Events</h1>
+    <section class="main-overview">
+        <% overview.forEach(event => { %>
+            <a class="card" href="/m/events/<%= event.id %>">
+                <img class="card-thumbnail" src="<%=  `${event.thumbnail.path}.${event.thumbnail.extension}` %>" alt="Event Thumbnail">
+                <h5 class="card-title"><%= event.title %></h5>
+            </a>
+        <% }) %>
+    </section>
+</section>
+
+<%- include('partials/footer') %>

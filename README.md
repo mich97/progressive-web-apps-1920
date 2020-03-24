@@ -8,8 +8,8 @@
 ## Marvel Library
 Marvel Library is a library of Marvel related overview (comics, characters and series). Made with Node.js (server side rendered) and  retrieving data from the Marvel API.
 
-## Demon Link
-Soon!
+## Live Demo
+[Link](https://pwa-michel.herokuapp.com/)
 
 ## API
 This web-app was made by making use of the Marvel API. The Marvel API allows developers everywhere to access information about Marvel's vast library of comics—from what's coming up, to 70 years ago, 3000 calls can be made daily. Documentation can be found [here](https://developer.marvel.com/docs).
