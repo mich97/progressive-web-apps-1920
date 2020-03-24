@@ -28,21 +28,37 @@ header nav a:hover {
     border-bottom: 2px solid var(--marvel);
 }
 
+section[class="text-container"] {
+    max-width: 600px;
+    margin: auto;
+    padding: 1em;
+}
+
+section[class="text-container"] h1 {
+    font-size: 3em;
+    border-bottom: 4px solid var(--marvel);
+    margin-bottom: 0;
+}
+
 section[class="main-container"] {
     max-width: 1160px;
     margin: auto;
+    padding: 1em;
 }
 
 section[class="main-overview"] {
     display: grid;
     grid-template-columns: repeat(5, 1fr);
     grid-gap: 20px;
-    padding: 1em;
 }
 
 section[class="main-container"] a {
     text-decoration: none;
     color: var(--dark);
+}
+
+section[class="main-container"] h2 {
+    font-size: 2em;
 }
 
 img[class="card-thumbnail"] {
