@@ -45,13 +45,13 @@ function renderOverview(req, res) {
                 && item.description !== null)
 
             const modifiedOverview = overview.map(item => {
-                let thumbnailimg = item.thumbnail.path;
-                thumbnailimg = thumbnailimg.replace(/^http:\/\//i, 'https://');
+                let thumbnailPath = item.thumbnail.path
+                thumbnailPath = thumbnailPath.replace(/^http:\/\//i, 'https://')
 
                 return {
                     id: item.id,
                     name: item.title || item.name,
-                    img: `${thumbnailimg}.${item.thumbnail.extension}`
+                    img: `${thumbnailPath}.${item.thumbnail.extension}`
                 }
             })
 
@@ -70,8 +70,18 @@ function renderDetail(req, res) {
         .then(async response => {
             const data = await response.json()
             const detail = data.data.results[0]
+            let thumbnailPath = detail.thumbnail.path
+            thumbnailPath = thumbnailPath.replace(/^http:\/\//i, 'https://')
+
+            const modifiedDetail = {
+                id: detail.id,
+                img: `${thumbnailPath}.${detail.thumbnail.extension}`,
+                name: detail.title || detail.name,
+                description: detail.description
+            }
+
             res.render(`${category}_detail`, {
-                detail
+                modifiedDetail
             })
         })
 }
