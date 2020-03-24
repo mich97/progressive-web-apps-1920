@@ -6,6 +6,7 @@ const express = require('express')
 const fetch = require('node-fetch')
 const md5 = require('md5')
 
+const cors = "https://cors-anywhere.herokuapp.com/"
 const timestamp = Date.now()
 const publicKey = process.env.PUBLIC_KEY
 const privateKey = process.env.PRIVATE_KEY
@@ -34,7 +35,14 @@ function renderHome(req, res) {
 
 function renderOverview(req, res) {
     const category = req.params.category
-    const url = `http://gateway.marvel.com/v1/public/${category}?ts=${timestamp}&apikey=${publicKey}&hash=${hash}`
+    const pwa = req.params.pwa
+    let url
+
+    if(pwa == true) {
+        url = `${cors}http://gateway.marvel.com/v1/public/${category}?ts=${timestamp}&apikey=${publicKey}&hash=${hash}`
+    } else {
+        url = `http://gateway.marvel.com/v1/public/${category}?ts=${timestamp}&apikey=${publicKey}&hash=${hash}`
+    }
 
     fetch(url)
         .then(async response => {
