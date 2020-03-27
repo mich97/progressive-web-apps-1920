@@ -2,7 +2,7 @@
 
 ![Thumbnail](./course/app_thumbnail.png)
 
-Marvel Library is a library of Marvel related overview (comics, characters and series). Made with Node.js (server side rendered) and  retrieving data from the Marvel API.
+Marvel Library is a library of Marvel related overviews (comics, characters and series). Made with Node.js (server side rendered) and by retrieving data from the Marvel API.
 
 ## Table of contents
 - [Live Demo](#live-demo)
