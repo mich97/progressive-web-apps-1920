@@ -89,3 +89,11 @@ List of used (dev) dependencies
 - [ ] Placeholder images when loading
 - [ ] More categories
 - [ ] Display more information on detail pages
+
+## Conclusie
+- Je snapt het verschil tussen client side en server side renderen en kan server side rendering toepassen voor het tonen van data uit een API
+    - Client side rendering heeft JS in de browser nodig om alles in te kunnen laden, door middel van server side rendering is JS in de client niet meer nodig omdat alles via de server wordt gedaan en terug gestuurd.
+- Je begrijpt hoe een Service Worker werkt en kan deze in jouw applicatie op een nuttige wijze implementeren.
+    - De service worker is een script die in de achtergrond draait die mogelijkheid geeft tot bepaalde mogelijkheden. In mijn applicatie wordt er gebruik gemaakt van de service worker voor het cachen van pagina's en op deze wijze eerder bezochte pagina's en core assets sneller/offline te weergeven.
+- Je begrijpt hoe de critical render path werkt, en hoe je deze kan optimaliseren
+    - De critical render path zijn de stappen die de browser onderneemt om de html, css en js om te zetten naar iets op je browser. In mijn applicatie optimaliseer ik de critical render path door mijn verschillende stylesheets naar 1 te builden en door gzip compression toe te passen op bepaalde files.
